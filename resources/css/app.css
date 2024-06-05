@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.shadowPersonalizado{
+    box-shadow: 0 5px 0 rgba(0,0,0,0.7);
+}
+
+.clip1{
+    clip-path: ellipse(17% 50% at 50% 50%);
+}
+
+.clip2{
+    clip-path: circle(50% at 50% 50%);
+}
+
+@keyframes bigger {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-bigger {
+    animation: bigger 1s infinite;
+}
