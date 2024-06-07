@@ -19,7 +19,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    <FilesMatch "\.wasm\.gz$">
+    <FilesMatch "\.wasm.gz$">
         Header set Content-Encoding gzip
         Header set Content-Type application/wasm
     </FilesMatch>
