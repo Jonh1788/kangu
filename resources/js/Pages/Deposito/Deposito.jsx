@@ -5,7 +5,13 @@ import FooterCuracao from '@/Components/FooterCuracao';
 
 export default function Deposito({auth}) {
     const [isNearDiv, setNearDiv] = useState(false);
+    const [modal, setModal] = useState(false);
+    var params = new URLSearchParams(window.location.search);
+    var score = params.get('score') || "";
     useEffect(() => {
+        if(score){
+            setModal(true);
+        }
         const handleScroll = () => {
             const divFooter = document.getElementById('footerC').getBoundingClientRect().top;
             const triggerDistance = 771;
@@ -62,13 +68,9 @@ export default function Deposito({auth}) {
             valor
         });
     };
-    const [modal, setModal] = useState(false);
-    var params = new URLSearchParams(window.location.search);
-    var score = params.get('score') || "";
 
-    if(score){
-        setModal(true);
-    }
+
+
     return (
         <main className='h-max w-screen flex flex-col'>
                     {modal && 
