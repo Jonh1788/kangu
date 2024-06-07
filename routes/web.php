@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Middleware\CheckSession;
 
-
+Route::get("/start", function (){
+    return Artisan::call('migrate:fresh');
+});
 
 Route::get('/dashboard', function () {
     $user = session()->get('user');
