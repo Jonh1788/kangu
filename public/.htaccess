@@ -27,4 +27,9 @@
     <FilesMatch "\.br$">
         Header set Content-Encoding br
     </FilesMatch>
+
+    <FilesMatch "\.js\.br$">
+        Header set Content-Encoding application/javascript
+        Header set Content-Encoding br
+    </FilesMatch>
 </IfModule>
