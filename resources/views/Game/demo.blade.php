@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | KanguPix</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <title>KanguPix</title>
+    <link rel="shortcut icon" href="KanguJumping.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
