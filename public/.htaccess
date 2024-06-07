@@ -19,12 +19,12 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    <FilesMatch "\.wasm\.gz$">
-        Header set Content-Encoding brotli
+    <FilesMatch "\.wasm\.br$">
+        Header set Content-Encoding br
         Header set Content-Type application/wasm
     </FilesMatch>
 
-    <FilesMatch "\.gz$">
-        Header set Content-Encoding brotli
+    <FilesMatch "\.br$">
+        Header set Content-Encoding br
     </FilesMatch>
 </IfModule>
