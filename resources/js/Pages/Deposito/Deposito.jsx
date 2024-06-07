@@ -60,7 +60,7 @@ export default function Deposito({auth}) {
                 <div className="w-[90%] h-max py-4 px-4 bg-white rounded-lg text-slate-900 text-center pt-4 gap-4 flex flex-col border-4 border-slate-400">
                     <h1 className="font-bold">Parabéns!</h1>
                     <p>Na nossa demo você chegou a ter R${score} em saldo! Realize o depósito para ter ganhos reais!</p>
-                    <button onClick={setModal(false)} className="bg-[#FF8A00] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
+                    <button onClick={() => setModal(false)} className="bg-[#FF8A00] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
                                 <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
                                 <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
                                 Depositar
