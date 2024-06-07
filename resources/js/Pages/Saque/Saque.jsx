@@ -1,6 +1,7 @@
+import FooterCuracao from "@/Components/FooterCuracao";
 import { Link, router, usePage } from "@inertiajs/react";
 import { Banknote, Home, Landmark, LogOut, Users } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Saque ({auth}) {
     const [modal, setModal] = useState(false);
@@ -9,7 +10,21 @@ export default function Saque ({auth}) {
     const [buttonText, setButtonText] = useState('');
     const [link, setLink] = useState('');
     const [error, setError] = useState('');
+    const [isNearDiv, setNearDiv] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            const divFooter = document.getElementById('footerC').getBoundingClientRect().top;
+            const triggerDistance = 771;
+            setNearDiv(divFooter < triggerDistance);
+            console.log(divFooter < triggerDistance)
+        }
+        
+        window.addEventListener('scroll', handleScroll);
 
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
     const setModal2 = (title, text, link, buttonText) => {
         setTitle(title);
         setText(text);
@@ -124,12 +139,12 @@ export default function Saque ({auth}) {
                     <Link href="/deposito" >
                         <Landmark />
                     </Link>
-                    <Link href="/saque" className="
-                    rounded-full bg-[#7C30F2]/60 backdrop-blur-sm border-[4px] border-[#CD0000] p-2 -translate-y-6 
+                    <Link href="/saque" className={` ease-in-out duration-300
+                    rounded-full bg-[#7C30F2]/60 backdrop-blur-sm border-[4px] p-2 -translate-y-6 
                     before:absolute before:bg-transparent before:size-4 before:-left-5 
-                    before:rounded-tr-[70%] before:top-5 before:shadow-[0_-10px_0_0_#CD0000] 
+                    before:rounded-tr-[70%] before:top-5
                     after:absolute after:bg-transparent after:size-4 after:-right-5 
-                    after:rounded-tl-[70%] after:top-5 after:shadow-[0_-10px_0_0_#CD0000]">
+                    after:rounded-tl-[70%] after:top-5  ` + (isNearDiv ? " border-slate-950 before:shadow-[0_-10px_0_0_#020617] after:shadow-[0_-10px_0_0_#020617]" : "border-[#CD0000] before:shadow-[0_-10px_0_0_#CD0000] after:shadow-[0_-10px_0_0_#CD0000]")}>
                         <Banknote />
                     </Link>
                     <Link href="/afiliados">
@@ -139,6 +154,7 @@ export default function Saque ({auth}) {
                         <LogOut />
                     </Link>     
             </footer>
+            <FooterCuracao />
         </ main>
     )
 }

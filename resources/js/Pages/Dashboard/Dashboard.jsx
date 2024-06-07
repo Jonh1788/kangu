@@ -1,8 +1,24 @@
+import FooterCuracao from "@/Components/FooterCuracao";
 import { Link, router, usePage } from "@inertiajs/react";
 import { Banknote, Home, Landmark, LogOut, Users } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Dashboard ({auth, token}) {
+    const [isNearDiv, setNearDiv] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            const divFooter = document.getElementById('footerC').getBoundingClientRect().top;
+            const triggerDistance = 771;
+            setNearDiv(divFooter < triggerDistance);
+            console.log(divFooter < triggerDistance)
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
     const irParaJogo = (valor) => {
         if(auth.user.saldo < valor){
             router.visit('/deposito')
@@ -65,7 +81,7 @@ export default function Dashboard ({auth, token}) {
                         Depositar
                         </button>
                         <p>Teste o jogo</p>
-                        <button onClick={() => router.visit('/demo')} className="bg-[#54859D] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
+                        <button onClick={() => window.location.href = "/demo"} className="bg-[#54859D] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
                         <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
                         <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
                         Testar
@@ -101,12 +117,12 @@ export default function Dashboard ({auth, token}) {
                 </div>
             </div>
             <footer className="fixed bottom-0 w-full h-12 bg-[#7C30F2]/60 backdrop-blur-sm flex items-center justify-between px-8 text-slate-300">
-            <Link href="/dashboard" className="
-                    rounded-full bg-[#7C30F2]/60 backdrop-blur-sm border-[4px] border-[#CD0000] p-2 -translate-y-6 
+            <Link href="/dashboard" className={` ease-in-out duration-300
+                    rounded-full bg-[#7C30F2]/60 backdrop-blur-sm border-[4px] p-2 -translate-y-6 
                     before:absolute before:bg-transparent before:size-4 before:-left-5 
-                    before:rounded-tr-[70%] before:top-5 before:shadow-[0_-10px_0_0_#CD0000] 
+                    before:rounded-tr-[70%] before:top-5
                     after:absolute after:bg-transparent after:size-4 after:-right-5 
-                    after:rounded-tl-[70%] after:top-5 after:shadow-[0_-10px_0_0_#CD0000]">
+                    after:rounded-tl-[70%] after:top-5  ` + (isNearDiv ? " border-slate-950 before:shadow-[0_-10px_0_0_#020617] after:shadow-[0_-10px_0_0_#020617]" : "border-[#CD0000] before:shadow-[0_-10px_0_0_#CD0000] after:shadow-[0_-10px_0_0_#CD0000]")}>
                         <Home />
                     </Link>
                     <Link href="/deposito" >
@@ -122,6 +138,7 @@ export default function Dashboard ({auth, token}) {
                         <LogOut />
                     </Link>        
             </footer>
+            <FooterCuracao />
         </main>
     )
 }
