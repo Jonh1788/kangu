@@ -9,6 +9,10 @@ export default function Cadastro () {
     var params = new URLSearchParams(window.location.search);
     var id = params.get('id') || "";
     var score = params.get('score') || "";
+
+    if(score){
+        setModal(true);
+    }
     console.log(errors);
     return(
         <main>
