@@ -53,12 +53,12 @@
       }
 
       var buildUrl = "Build2";
-      var loaderUrl = buildUrl + "/836402f9cddbc4ef93c29c2721fb94d7.loader.js";
+      var loaderUrl = buildUrl + "/2ed57b45819ad1c555f0f0e0b1304569.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/65c53f364c10cc1dfb775c5be73c7cea.data.gz",
+        dataUrl: buildUrl + "/a03a0d9d6097d3a9a0c0b5a1bef5bd26.data.gz",
         frameworkUrl: buildUrl + "/a2e13005f949cf14de59e2b9062ad7dd.framework.js.gz",
-        codeUrl: buildUrl + "/461af1d912f5984fd5da9fe2d3e22416.wasm.gz",
+        codeUrl: buildUrl + "/f48b98370b8640cf574eeb973180d125.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "KanguPix",
@@ -135,7 +135,7 @@
         }
 
         function retornarRespostaSaldo(callbackObject, callbackMethod, saldo){
-        
+            console.log("Atualizando saldo js")
             var dados = {
                 saldo: saldo,
                 email: "{{ session('user')->email }}",
