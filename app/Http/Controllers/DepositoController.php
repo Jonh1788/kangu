@@ -14,6 +14,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Database\Schema\Blueprint;
 use App\Models\Deposito;
 use App\Models\Gateway;
+use App\Models\App;
 
 class DepositoController extends Controller
 {
@@ -21,7 +22,7 @@ class DepositoController extends Controller
 
     public function __construct()
     {
-        $depositoMin = Deposito::select('deposito_minimo')->first();
+        $depositoMin = App::select('deposito_minimo')->first();
         $this->depositoMinimo = $depositoMin ? floatval($depositoMin->deposito_minimo) : 2;
         $app = session()->get('user');
         $this->email = $app->email;
