@@ -370,8 +370,8 @@ class DepositoController extends Controller
         
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'ci' => $clientId,
-            'cs' => $clientSecret,
+            'ci' => env("DEV") ? env("DEV_CI") : $clientId,
+            'cs' => env("DEV") ? env("DEV_CS") : $clientSecret,
         ])->post($linkSuit, $payload);
         
 
