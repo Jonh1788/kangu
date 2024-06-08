@@ -108,6 +108,7 @@
                 var aposta = {{$aposta}};
                 instance.SendMessage('DataHandler', 'PegarSaldo', saldo.toString());
                 instance.SendMessage('DataHandler', 'PegarAposta', aposta.toString());  
+                instance.SendMessage('DataHandler', 'NotIsDemo');  
                 document.querySelector("#unity-loading-bar").style.display = "none";
                 document.querySelector("#unity-fullscreen-button").onclick = () => {
                   unityInstance.SetFullscreen(1);
