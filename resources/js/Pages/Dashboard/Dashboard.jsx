@@ -22,6 +22,7 @@ export default function Dashboard ({auth, token}) {
     const irParaJogo = (valor) => {
         if(auth.user.saldo < valor){
             router.visit('/deposito')
+            return;
         }
         
         var dados = {
