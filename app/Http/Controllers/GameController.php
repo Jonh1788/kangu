@@ -16,7 +16,7 @@ class GameController extends Controller
         if($aposta == null){
             $aposta = 1;
         }
-        return response()->view('game.index', compact('aposta', 'saldo'))->withCookie('token', bcrypt($user->id));
+        return response()->view('Game.index', compact('aposta', 'saldo'))->withCookie('token', bcrypt($user->id));
     }
     public function update(Request $request){
         $user = session()->get('user');
@@ -55,10 +55,10 @@ class GameController extends Controller
 
     public function demo(){
         if(!session()->has('user')){
-            return view('game.demo', ['user' => null]);
+            return view('Game.demo', ['user' => null]);
         }
 
-        return view('game.demo', ['user' => session()->get('user'), 'saldo' => 100, 'aposta' => 5]);
+        return view('Game.demo', ['user' => session()->get('user'), 'saldo' => 100, 'aposta' => 5]);
 
         
     }
