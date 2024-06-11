@@ -455,7 +455,7 @@ class AdmController extends Controller
                 $result->where('afiliado', $leadAff);
             }
 
-            $result  = Appconfig::orderBy('data_cadastro', 'desc')->get();
+            $result  = Appconfig::orderBy('created_at', 'desc')->get();
             
 
             if ($result->isEmpty()) {
