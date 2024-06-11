@@ -373,18 +373,21 @@ function saveFile(blob, filename) {
       method: 'GET',
       success: function(data) {
         // Limpar o corpo da tabela
+        console.log(data)
         $('#table-body').empty();
         
 
         // Inserir dados na tabela
         data.forEach(function(row) {
+          var dataRow = new Date(row.created_at)
+          var dataFormatada = dataRow.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
             var newRow = "<tr>" +
-            "<td>" + row.data_cadastro + "</td>" +
+            "<td>" + dataFormatada + "</td>" +
             "<td>" + row.email + "</td>" +
             "<td>" + row.telefone + "</td>" +
             "<td>" + row.saldo + "</td>" +
          
-            "<td>" + row.depositou + "</td>" +
+            "<td>" + row.depositos + "</td>" +
            
             "<td><button class='btn-edit' data-id='" + row.id + "'>Editar</button></td>" +
             "</tr>";
@@ -416,7 +419,7 @@ function saveFile(blob, filename) {
             $('#editSaldo').val(user.saldo);
             $('#editLinkAfiliado').val(user.linkafiliado);
             $('#editPlano').val(user.plano);
-            $('#editDepositou').val(user.depositou);
+            $('#editDepositos').val(user.depositos);
             $('#editBloqueado').prop('checked', user.bloc === 'true');
             $('#editSaldoComissao').val(user.saldo_comissao);
             $('#editPerdas').val(user.percas);
@@ -458,12 +461,14 @@ function saveFile(blob, filename) {
 
                     // Inserir dados na tabela
                     data.forEach(function (row) {
+                      var dataRow = new Date(row.created_at)
+                      var dataFormatada = dataRow.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
                         var newRow = "<tr>" +
-                            "<td>" + row.data_cadastro + "</td>" +
+                            "<td>" + dataFormatada + "</td>" +
                             "<td>" + row.email + "</td>" +
                             "<td>" + row.telefone + "</td>" +
                             "<td>" + row.saldo + "</td>" +
-                            "<td>" + row.depositou + "</td>" +
+                            "<td>" + row.depositos + "</td>" +
                             "<td><button class='btn-edit' data-id='" + row.id + "'>Editar</button></td>" +
                             "</tr>";
                         $('#table-body').append(newRow);

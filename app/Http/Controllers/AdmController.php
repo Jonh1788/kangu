@@ -428,7 +428,7 @@ class AdmController extends Controller
             
 
             $ultimas24h = count($resultUltimas24h);
-
+            
             return view('adm.usuarios', compact('ultimas24h', 'total'));
 
         } catch(\Exception $e) {
@@ -449,15 +449,14 @@ class AdmController extends Controller
             
             $leadAff = $request->has('leadAff') ? $request->query('leadAff') : null;
 
-            $result = DB::table('appconfig')
-            ->select('id','data_cadastro','email','senha','telefone','saldo','linkafiliado','plano','depositou','bloc','saldo_comissao','percas','ganhos',
-            'cpa','cpafake','comissaofake');
+            $result = Appconfig::get();
+            
             if (!empty($leadAff)) {
                 $result->where('afiliado', $leadAff);
             }
 
-            $result->orderBy('data_cadastro', 'desc');
-            $result = $result->get();
+            $result  = Appconfig::orderBy('data_cadastro', 'desc')->get();
+            
 
             if ($result->isEmpty()) {
                 die("Erro na consulta");
