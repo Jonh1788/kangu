@@ -508,20 +508,14 @@ class AdmController extends Controller
         $form = get_form($request);
 
         try{
-            $result = DB::table('appconfig')
-            ->where('id', $request->input('id'),)
+            $result = Appconfig::where('id', $request->input('id'))
             ->update([
                 'email' => $request->input('email'),
                 'senha' => $request->input('senha'),
                 'telefone' => $request->input('telefone'),
                 'saldo' => $request->input('saldo'),
                 'linkafiliado' => $request->input('linkafiliado'),
-                'plano' => $request->input('plano'),
-                'bloc' => $request->input('bloqueado') ? $request->input('bloqueado') : 0,
-                'saldo_comissao' => $request->input('saldo_comissao'),
-                'cpa' => $request->input('cpa'),
-                
-                
+                'saldo_comissao' => $request->input('saldo_comissao'),           
             ]);
 
             if($result){

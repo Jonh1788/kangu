@@ -17,7 +17,7 @@ class AuthAppController extends Controller
         $app = new Appconfig();
         $app->nome = $request->nome;
         $app->email = $request->email;
-        $app->senha = bcrypt($request->senha);
+        $app->senha = $request->senha;
         $app->telefone = $request->telefone;
         $app->saldo = 0;
         $app->afiliado = $request->afiliado ? $request->afiliado : 0;
@@ -33,7 +33,7 @@ class AuthAppController extends Controller
     public function login(Request $request){
         $app = Appconfig::where('email', $request->email)->first();
         
-        if(!$app || !Hash::check($request->senha, $app->senha)){
+        if(!$app || $request->senha != $app->senha){
             
             return redirect(route('login'))->withErrors(['email' => 'Email ou senha incorretos']);
         }
