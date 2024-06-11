@@ -44,7 +44,7 @@ export default function Cadastro () {
                     <input name="_token" type="hidden" value={csrfToken}/>
                     <input name="afiliado" type="hidden" value={id}/>
                     <input name="nome" type="text" placeholder="Nome" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
-                    <input name="email" type="email" placeholder="Email" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
+                    <input name="email" type="text" placeholder="Email" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
                     <input name="telefone" type="text" placeholder="Celular" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
                     <input type="password" placeholder="Senha" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
                     <input name="senha" type="password" placeholder="Confirme a senha" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>

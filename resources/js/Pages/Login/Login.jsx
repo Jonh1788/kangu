@@ -20,7 +20,7 @@ export default function Login () {
                 {errors.email && <p className="text-red-500 text-sm -mt-12 -mb-8">{errors.email}</p>}
                 <form action="/login" method="post" className="flex flex-col gap-3 px-2 placeholder:text-sm mt-">
                     <input type="hidden" name="_token" value={csrfToken}/>
-                    <input name="email" type="email" placeholder="Email" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
+                    <input name="email" type="text" placeholder="Email" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
                     <input name="senha" type="password" placeholder="Senha" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
                     <button className="bg-[#3EB605] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
                     <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
