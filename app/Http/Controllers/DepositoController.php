@@ -83,6 +83,22 @@ class DepositoController extends Controller
         // $gatewayCredentialsArray = is_object($gatewayCredentials) ? get_object_vars($gatewayCredentials) : [];
         // $client_id = $gatewayCredentialsArray['client_id'];
         // $client_secret = $gatewayCredentialsArray['client_secret'];
+        $gateway = Gateway::first();
+
+        if($gateway){
+            if($gateway->name == 'ezze'){
+                $client_id = $gateway->client_id;
+                $client_secret = $gateway->client_secret;
+                return $this->EzzePix($form, $client_id, $client_secret);
+            }
+
+            if($gateway->name == 'suit'){
+                $client_id = $gateway->client_id;
+                $client_secret = $gateway->client_secret;
+                return $this->SuitPay($form, $client_id, $client_secret);
+            }
+        }
+        /*
         if(env('GATEWAY') == 'ezze'){
             $client_id = env('EZZE_CI');
             $client_secret = env('EZZE_CS');
@@ -90,6 +106,7 @@ class DepositoController extends Controller
         }
         // Faça a solicitação PIX
         // Verifique a resposta da solicitação PIX
+        */
         $client_id = env('SUIT_CI');
         $client_secret = env('SUIT_CS');
         return $this->SuitPay($form, $client_id, $client_secret);
