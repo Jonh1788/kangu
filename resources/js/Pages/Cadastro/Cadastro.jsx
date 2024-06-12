@@ -43,11 +43,11 @@ export default function Cadastro () {
                 <form action="/cadastrar" method="post" className="flex flex-col gap-3 px-2 placeholder:text-sm mt-">
                     <input name="_token" type="hidden" value={csrfToken}/>
                     <input name="afiliado" type="hidden" value={id}/>
-                    <input name="nome" type="text" placeholder="Nome" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
-                    <input name="email" type="text" placeholder="Email" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
-                    <input name="telefone" type="text" placeholder="Celular" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
-                    <input type="password" placeholder="Senha" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
-                    <input name="senha" type="password" placeholder="Confirme a senha" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
+                    <input required name="nome" type="text" placeholder="Nome" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
+                    <input required name="email" type="text" placeholder="Email" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
+                    <input required name="telefone" type="text" placeholder="Celular" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
+                    <input required type="password" placeholder="Senha" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
+                    <input required name="senha" type="password" placeholder="Confirme a senha" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
                     <button type="submit" className="bg-[#FF8A00] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
                     <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
                     <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
