@@ -16,6 +16,7 @@
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
+        <p style="color: #fff;">Carregando por favor aguarde...</p>
       </div>
       <div id="unity-warning"> </div>
       <div id="unity-footer">
