@@ -331,7 +331,7 @@ class DepositoController extends Controller
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $authorization,
-        ])->post($productionLink . '/v1/pix/qrcodes', $payload2);
+        ])->post($productionLink . '/v1/pix/qrcodes', $payload);
 
 
         $res = $response->json();
