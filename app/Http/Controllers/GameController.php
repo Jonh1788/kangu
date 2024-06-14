@@ -16,7 +16,7 @@ class GameController extends Controller
         $saldo = Appconfig::where('email', $user->email)->first()->saldo;
         $multiplicador = App::first();
         if($multiplicador == null){
-            $multiplicador = 1;
+            $multiplicador = 1 + 0.1;
             App::insert([
                 'depositos' => 0,
                 'saques' => 0,
@@ -27,6 +27,8 @@ class GameController extends Controller
                 'dificuldade_jogo' => 1,
                 'multiplicador' => 1
             ]);
+        } else {
+            $multiplicador = $multiplicador->multiplicador + 0.1;
         }
         
         if($aposta == null && $saldo > 0){
@@ -34,7 +36,7 @@ class GameController extends Controller
         } else if($aposta == null && $saldo == 0){
             return redirect(route('dashboard'));
         }
-        $multiplicador = $multiplicador + 0.2;
+        
         return response()->view('Game.index', compact('aposta', 'saldo', 'multiplicador'))->withCookie('token', bcrypt($user->id));
     }
     public function update(Request $request){
