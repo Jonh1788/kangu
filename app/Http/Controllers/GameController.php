@@ -44,6 +44,7 @@ class GameController extends Controller
         $email = $request->email;
         $token = $request->token;
         $valor = $request->saldo;
+        dd($valor);
         if(\Hash::check($user->id, $token)){
             $app = Appconfig::where('email', $email)->first();
             $app->saldo = $valor;
