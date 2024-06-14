@@ -59,7 +59,7 @@ class AdmController extends Controller
         
         
        
-        return view("adm.index", ["result"=> $result, "quantidadeUsuarios" => $quantidadeUsuarios, 'quantidadeNumeroDepositos' => $quantidadeNumeroDepositos, 'valorTotalDepositos' => $valorTotalDepositos, 'totalSaques' => $totalSaques, 'valorTotalSaques' => $valorTotalSaques, 'multiplicador' => $multiplicador]);
+        return view("adm.index", ["result"=> $result[0], "quantidadeUsuarios" => $quantidadeUsuarios, 'quantidadeNumeroDepositos' => $quantidadeNumeroDepositos, 'valorTotalDepositos' => $valorTotalDepositos, 'totalSaques' => $totalSaques, 'valorTotalSaques' => $valorTotalSaques, 'multiplicador' => $multiplicador]);
     }
 
     public function processo(Request $request){
