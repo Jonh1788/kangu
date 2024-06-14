@@ -54,20 +54,18 @@
       }
 
       var buildUrl = "Build2";
-      var loaderUrl = buildUrl + "/14652ada3f72b4d5e7c82d409625d4bc.loader.js";
+      var loaderUrl = buildUrl + "/35f56494b87bf82666c98c3c13ff5f50.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/8fba91b70a5b0056f4c65d4e516cd891.data.gz",
+        dataUrl: buildUrl + "/e6bb54192cede931cd0dade6a9708c0e.data.gz",
         frameworkUrl: buildUrl + "/3a1e8e7113f805a6df25b9bff0c6fb82.framework.js.gz",
-        codeUrl: buildUrl + "/c77dd4f08a6822dd6f08618af9861b29.wasm.gz",
+        codeUrl: buildUrl + "/840f3761c9354ad298ad4b1803759468.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "KanguPix",
         productVersion: "0.1",
         showBanner: unityShowBanner,
       };
-
-
       // By default, Unity keeps WebGL canvas render target size matched with
       // the DOM size of the canvas element (scaled by window.devicePixelRatio)
       // Set this to false if you want to decouple this synchronization from
@@ -106,10 +104,8 @@
               }).then((unityInstance) => {
                 instance = unityInstance;
                 var saldo = {{$saldo}};
-                console.log("Saldo: " + saldo);
                 var aposta = {{$aposta}};
                 var multiplicador = {{$multiplicador}};
-                console.log(multiplicador.toString());
                 instance.SendMessage('DataHandler', 'PegarSaldo', saldo.toString());
                 instance.SendMessage('DataHandler', 'PegarAposta', aposta.toString());  
                 instance.SendMessage('DataHandler', 'NotIsDemo', multiplicador.toString());  

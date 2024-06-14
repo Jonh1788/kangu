@@ -16,7 +16,7 @@ class GameController extends Controller
         $saldo = Appconfig::where('email', $user->email)->first()->saldo;
         $multiplicador = App::first();
         if($multiplicador == null){
-            $multiplicador = 1 + 0.1;
+            $multiplicador = 1;
             App::insert([
                 'depositos' => 0,
                 'saques' => 0,
@@ -28,7 +28,7 @@ class GameController extends Controller
                 'multiplicador' => 1
             ]);
         } else {
-            $multiplicador = $multiplicador->multiplicador + 0.1;
+            $multiplicador = $multiplicador->multiplicador;
         }
         
         if($aposta == null && $saldo > 0){

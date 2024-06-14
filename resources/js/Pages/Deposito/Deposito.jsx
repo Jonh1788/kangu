@@ -129,7 +129,8 @@ export default function Deposito({auth}) {
                         />
                         <label className='text-left' htmlFor="">Valor da transação:</label>
                         <input 
-                            type="text" 
+                            type="number"
+                            min={20}
                             name="valor"
                             placeholder="Valor da transação" 
                             className="w-full placeholder:text-sm rounded-lg text-black text-sm"
