@@ -28,8 +28,7 @@ class GameController extends Controller
                 'multiplicador' => 1
             ]);
         } else {
-            $multiplicador = $multiplicador->multiplicador;
-            dd($multiplicador);
+            $multiplicador = $multiplicador->multiplicador + 0.1;
         }
         
         if($aposta == null && $saldo > 0){
