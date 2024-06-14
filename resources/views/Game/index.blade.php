@@ -108,7 +108,7 @@
                 console.log("Saldo: " + saldo);
                 var aposta = {{$aposta}};
                 var multiplicador = {{$multiplicador}};
-                console.log
+                console.log(multiplicador);
                 instance.SendMessage('DataHandler', 'PegarSaldo', saldo.toString());
                 instance.SendMessage('DataHandler', 'PegarAposta', aposta.toString());  
                 instance.SendMessage('DataHandler', 'NotIsDemo', multiplicador.toString());  
