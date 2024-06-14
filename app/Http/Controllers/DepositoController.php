@@ -480,8 +480,9 @@ class DepositoController extends Controller
             $lastAuthorizationDate = new DateTime($lastAuthorization->created_at);
             $now = new DateTime();
             $diff = $now->diff($lastAuthorizationDate);
-            if($diff->i < 25 || $diff->h == 0 || $diff->d == 0 || $diff->m == 0 || $diff->y == 0){
-                dd($now);
+            $totalMinutes = $diff->i + ($diff->h * 60) + ($diff->d * 24 * 60) + ($diff->m * 30 * 24 * 60) + ($diff->y * 12 * 30 * 24 * 60);
+            if($totalMinutes < 25){
+
                 return $lastAuthorization->authorization_token;
             }
         }
