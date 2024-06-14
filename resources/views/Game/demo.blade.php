@@ -54,12 +54,12 @@
       }
 
       var buildUrl = "Build2";
-      var loaderUrl = buildUrl + "/2ed57b45819ad1c555f0f0e0b1304569.loader.js";
+      var loaderUrl = buildUrl + "/92960e431b6dbf134c716a0fa4e02d27.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/a03a0d9d6097d3a9a0c0b5a1bef5bd26.data.gz",
-        frameworkUrl: buildUrl + "/a2e13005f949cf14de59e2b9062ad7dd.framework.js.gz",
-        codeUrl: buildUrl + "/f48b98370b8640cf574eeb973180d125.wasm.gz",
+        dataUrl: buildUrl + "/2a85f425193ee8aa37e961c9234bacaf.data.gz",
+        frameworkUrl: buildUrl + "/1cb17ca997e7773cc8d7f103e0d3064d.framework.js.gz",
+        codeUrl: buildUrl + "/478104c7636809a7c6ef00231ceca6e3.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "KanguPix",

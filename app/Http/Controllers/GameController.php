@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Appconfig;
+use App\Models\App;
 
 class GameController extends Controller
 {
@@ -13,10 +14,28 @@ class GameController extends Controller
         $cookie = cookie('token', bcrypt($user->id), 60);  
         $aposta = $request->query('aposta');
         $saldo = Appconfig::where('email', $user->email)->first()->saldo;
-        if($aposta == null){
-            $aposta = 1;
+        $multiplicador = App::first();
+        if($multiplicador == null){
+            $multiplicador = 1;
+            App::insert([
+                'depositos' => 0,
+                'saques' => 0,
+                'usuarios' => 0,
+                'faturamento' => 0,
+                'deposito_minimo' => 1,
+                'saque_minimo' => 1,
+                'dificuldade_jogo' => 1,
+                'multiplicador' => 1
+            ]);
         }
-        return response()->view('Game.index', compact('aposta', 'saldo'))->withCookie('token', bcrypt($user->id));
+        
+        if($aposta == null && $saldo > 0){
+            $aposta = 1;
+        } else if($aposta == null && $saldo == 0){
+            return redirect(route('dashboard'));
+        }
+        $multiplicador = $multiplicador + 0.2;
+        return response()->view('Game.index', compact('aposta', 'saldo', 'multiplicador'))->withCookie('token', bcrypt($user->id));
     }
     public function update(Request $request){
         $user = session()->get('user');

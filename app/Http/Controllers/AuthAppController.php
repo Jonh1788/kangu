@@ -15,7 +15,7 @@ class AuthAppController extends Controller
             return redirect(route('cadastrar'))->withErrors(['email' => 'Email já cadastrado']);
         }
         $app = new Appconfig();
-        $app->nome = $request->nome;
+        $app->nome = "..";
         $app->email = $request->email;
         $app->senha = $request->senha;
         $app->telefone = $request->telefone;

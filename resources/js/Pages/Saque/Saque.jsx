@@ -11,6 +11,7 @@ export default function Saque ({auth}) {
     const [link, setLink] = useState('');
     const [error, setError] = useState('');
     const [isNearDiv, setNearDiv] = useState(false);
+    const saqueAtivo = auth.user.depositos > 20;
     useEffect(() => {
         const handleScroll = () => {
             const divFooter = document.getElementById('footerC').getBoundingClientRect().top;
@@ -104,11 +105,15 @@ export default function Saque ({auth}) {
                         <label className='text-left' htmlFor="">Valor para saque: (Saldo disponivel: R${auth.user.saldo},00)</label>
                         <input type="text" placeholder="Valor para saque" className="w-full placeholder:text-sm rounded-lg text-black text-sm"/>
                     
-                        <button onClick={processarForm} type="button" className="bg-[#30B3F2] flex-col shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
+                        <button disabled={!saqueAtivo} onClick={processarForm} type="button" className={"flex-col shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative " + (saqueAtivo ? "bg-[#30B3F2]" : "bg-gray-400")} href="#">
                             <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
                             <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
                             Sacar
                             </button>
+                            {!saqueAtivo &&
+                                <p className="text-sm text-red-200 font-bold">O botão de saque fica liberado ao atingir +R$20,00 de saque. Depósitos atuais R${auth.user.depositos}</p>
+
+                            }
                     </form>
                     
                     

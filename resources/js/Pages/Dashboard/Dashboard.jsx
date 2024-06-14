@@ -39,9 +39,36 @@ export default function Dashboard ({auth, token}) {
             console.log(error)
         }
         )
+
+
+       
     }
+
+
+    const [modal, setModal] = useState(false);
+    var params = new URLSearchParams(window.location.search);
+    var score = params.get('score') || "";
+    useEffect(() => {
+        if(score){
+            setModal(true);
+        }
+    },[]);
+
     return(
         <main className="flex-col flex h-max w-screen">
+                  {modal && 
+            <div id="modal" className="flex items-center justify-center h-screen w-screen absolute inset-0 bg-slate-800/50 z-10">
+                <div className="w-[90%] h-max py-4 px-4 bg-white rounded-lg text-slate-900 text-center pt-4 gap-4 flex flex-col border-4 border-slate-400">
+                    <h1 className="font-bold">Parabéns!</h1>
+                    <p>Você é um verdadeiro campeão e consegui ganhar R${score}. Continue jogando para lucrar ainda mais! #ficaadica</p>
+                    <button onClick={() => setModal(false)} className="bg-[#FF8A00] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
+                                <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
+                                <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
+                                Continuar
+                            </button>
+                </div>
+            </div>
+    }
             <div className="bg-gradient-to-b from-[#7C30F2] to-[#CD0000] absolute inset-0 -z-[10]"></div>
             <div className="h-screen w-full">
             <img src="/background-2.png" alt="" className="absolute inset-0 object-cover w-full h-full -z-[9]" />

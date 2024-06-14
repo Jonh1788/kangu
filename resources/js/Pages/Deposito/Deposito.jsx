@@ -150,28 +150,29 @@ export default function Deposito({auth}) {
 
                             <button 
                                 type="button" 
-                                className="bg-[#FF8A00] flex-col shadowPersonalizado h-20 w-full rounded-2xl flex items-center justify-center font-bold text-white relative"
-                                onClick={() => handleQuickSelect('25')}
-                            >
-                                <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0" />
-                                <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8" />
-                                R$25
-                                <p className="text-xs">Ganhe +R$30</p>
-                            </button>
-
-                            <button 
-                                type="button" 
                                 className="bg-[#3EB605] flex-col shadowPersonalizado h-20 w-full rounded-2xl flex items-center justify-center font-bold text-white relative animate-bigger"
                                 onClick={() => handleQuickSelect('30')}
                             >
                                 <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0" />
                                 <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8" />
-                                R$30
-                                <p className="text-xs">Ganhe +R$50</p>
+                                R$25
+                                <p className="text-xs">Ganhe +R$30</p>
                                 <div className="absolute w-full bg-[#7C30F2] -top-4 h-min rounded-t-md text-xs">
                                     Mais comprado
                                 </div>
                             </button>
+
+                            <button 
+                                type="button" 
+                                className="bg-[#FF8A00] flex-col shadowPersonalizado h-20 w-full rounded-2xl flex items-center justify-center font-bold text-white relative"
+                                onClick={() => handleQuickSelect('25')}
+                            >
+                                <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0" />
+                                <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8" />
+                                R$30
+                                <p className="text-xs">Ganhe +R$50</p>
+                            </button>
+
 
                             <button 
                                 type="button" 

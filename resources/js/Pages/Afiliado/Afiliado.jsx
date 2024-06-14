@@ -1,11 +1,12 @@
 import FooterCuracao from "@/Components/FooterCuracao";
 import { Link, router, usePage } from "@inertiajs/react";
-import { Banknote, Home, Landmark, LogOut, Users } from "lucide-react";
+import { Banknote, Copy, Home, Landmark, LogOut, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Afiliado ({auth}) {
     const app = usePage().props; 
     const [isNearDiv, setNearDiv] = useState(false);
+    const [copiado, setCopiado] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
             const divFooter = document.getElementById('footerC').getBoundingClientRect().top;
@@ -20,6 +21,14 @@ export default function Afiliado ({auth}) {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
+
+    const copiarCodigo = () => {
+        navigator.clipboard.writeText(auth.user.linkafiliado);
+        setCopiado(true);
+        setTimeout(() => {
+            setCopiado(false);
+        }, 2000);
+    }
 
     return(
         <main className="flex flex-col h-max w-screen">
@@ -37,7 +46,7 @@ export default function Afiliado ({auth}) {
                         <h1 className="font-bold text-2xl">BÔNUS DE INDICAÇÃO!</h1>
                         <p className="text-md">Ganhe instantaneamente R$50 por pessoa convidada que depósitar no minimo R$20</p>
                         <p className="text-md mt-2">Seu link de indicação é: <span className="font-bold">{auth.user.linkafiliado}</span></p>
-                        <button>Copiar link</button>
+                        <button onClick={copiarCodigo} className="underline w-full flex items-center justify-center gap-2 my-2">{!copiado ? "Copiar link" : "Copiado"}  <Copy /></button>
                     </div>
                     
                     <div className="flex flex-col text-left px-2 -mt-16">
@@ -62,10 +71,10 @@ export default function Afiliado ({auth}) {
                                             <td>0</td>
                                         </tr>   
                                         <tr>
-                                        <button className="bg-[#FF8A00] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
+                                        <button onClick={() => router.visit("/saque")} className="bg-[#FF8A00] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative">
                                             <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
                                             <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
-                                            Saque afiliado
+                                            Saque convidado
                                         </button>
                                         </tr>
                                 </table>

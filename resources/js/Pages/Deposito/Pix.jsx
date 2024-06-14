@@ -91,10 +91,10 @@ export default function Pix ({ auth }) {
                 <div className={"bg-[#30B3F2] mx-2 mt-4 rounded-md py-2 flex items-center justify-center animate-bigger" + (pending ? " bg-[#CD0000]" : "")}>
                     <p>{pending ? "Pagamento Pendente" : "Aguardando pagamento"}</p>
                 </div>
-                <div  className="px-4 -mt-12">
-                    <div onClick={copiarCodigo} className="flex items-center justify-center">
+                <div  className="px-4 -mt-12 ">
+                    <div onClick={copiarCodigo} className="flex items-center justify-center cursor-pointer group">
                         <p>{copiado ? "Copiado": "Código Pix"}</p>
-                        <Clipboard />
+                        <Clipboard className="group-hover:scale-110 transition-all"/>
                     </div>
                     
                     <div  className="text-black text-xs h-12 w-full bg-white break-words overflow-auto">

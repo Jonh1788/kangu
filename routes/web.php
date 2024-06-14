@@ -13,7 +13,7 @@ Route::get("/start", function (){
 Route::get('/dashboard', function () {
     $user = session()->get('user');
     return Inertia::render('Dashboard/Dashboard', ['token' => bcrypt($user->id)]);
-});
+})->name('dashboard');
 
 Route::get('/deposito', function () {
     return Inertia::render('Deposito/Deposito');
@@ -35,6 +35,9 @@ Route::get('/depositoControle', [App\Http\Controllers\DepositoController::class,
 
 
 Route::withoutMiddleware([CheckSession::class])->group(function (){
+    Route::get('/presell', function () {
+        return Inertia::render('Presell/Presell');
+    })->name('presell');
    // Route::get('/Build2/{file}', [App\Http\Controllers\GameController::class, 'wasm'])->name('wasm');
     Route::get('/game', [App\Http\Controllers\GameController::class, 'index'])->name('game');
     Route::post('/game', [App\Http\Controllers\GameController::class, 'update'])->name('game.update');
