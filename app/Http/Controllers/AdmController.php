@@ -617,8 +617,8 @@ class AdmController extends Controller
 
             $clientId =  '';
             $clientSecret = '';
-            $name = '';
-            return view('adm.gateway', compact('clientId', 'clientSecret', 'name'));
+            $clientName = '';
+            return view('adm.gateway', compact('clientId', 'clientSecret', 'clientName'));
 
             
     }
