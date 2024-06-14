@@ -157,6 +157,7 @@
         }
 
         function gameOver(score){
+          console.log(score);
             axios.post('/game', {score: score + {{$saldo}}, email: "{{ session('user')->email }}", token: "{{ Cookie::get('token') }}"})
                 .then(function(response){
                     window.location.href = "/dashboard?score=" + score;
