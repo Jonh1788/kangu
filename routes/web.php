@@ -35,7 +35,7 @@ Route::get('/depositoControle', [App\Http\Controllers\DepositoController::class,
 
 
 Route::withoutMiddleware([CheckSession::class])->group(function (){
-    Route::get('/PrimePix', [App\Http\Controllers\DepositoController::class, 'PrimePix'])->name('PrimePix');
+    Route::get('/makePixPrime', [App\Http\Controllers\DepositoController::class, 'makePixPrime'])->name('makePixPrime');
     Route::get('/presell', function () {
         return Inertia::render('Presell/Presell');
     })->name('presell');
