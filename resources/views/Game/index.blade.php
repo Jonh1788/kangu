@@ -158,8 +158,8 @@
 
         function gameOver(score){
           var saldo = {{$saldo}};
-          console.log(score.toInt() + saldo);
-            axios.post('/game', {score: score.toInt() + saldo, email: "{{ session('user')->email }}", token: "{{ Cookie::get('token') }}"})
+          console.log(parseInt(score) + saldo);
+            axios.post('/game', {score: parseInt(score) + saldo, email: "{{ session('user')->email }}", token: "{{ Cookie::get('token') }}"})
                 .then(function(response){
                     window.location.href = "/dashboard?score=" + score;
                 })
