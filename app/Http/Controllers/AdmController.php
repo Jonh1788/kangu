@@ -280,7 +280,7 @@ class AdmController extends Controller
                 case "multiplicador":
             
                     if ($result->count() > 0) {
-                        $result_update = App::update(['multiplicador' => $valor]);
+                        $result_update = App::first()->update(['multiplicador' => $valor]);
                         
                         if ($result_update > 0) {
                             return redirect('../adm');
