@@ -120,7 +120,27 @@ class DepositoController extends Controller
         
     }
 
-    // Métodos auxiliares...
+    public function webhookPrime(){
+        $callbackUrl = route('webhook.pix');
+        
+        $payload = [
+           "url" => $callbackUrl,
+        ];
+        
+
+        $authorization = $this->GetAuthorizationPrime();
+        $productionLink = "https://api.primepag.com.br";
+        $sandboxLink = "https://api-stg.primepag.com.br";
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $authorization,
+        ])->post($productionLink . '/v1/webhooks/2', $payload);
+
+
+        $res = $response->json();
+        return $res;
+    }
 
     public function EzzePix($form, $client_id, $client_secret){
         $res = $this->makePix($form['name'], $form['cpf'], $form['value'], $client_id, $client_secret);
