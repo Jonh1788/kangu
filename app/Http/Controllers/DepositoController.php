@@ -156,9 +156,8 @@ class DepositoController extends Controller
 
     public function PrimePix($form, $client_id, $client_secret){
         $res = $this->makePixPrime($form['name'], $form['cpf'], $form['value'], $client_id, $client_secret);
-        if (isset($res['qrcode'])) {
 
-            dd($res);
+        if (isset($res['qrcode'])) {
             // Adicione a coluna 'data' e obtenha a data atual no formato dd/mm/aaaa hh:mm:ss, no horário de Brasília
             $userDate = $this->get_user_date();
 
@@ -292,24 +291,18 @@ class DepositoController extends Controller
         return $res;
     }
 
-    public function makePixPrime()
+    public function makePixPrime($name, $cpf, $value, $clientId, $clientSecret)
     {
 
         $callbackUrl = route('webhook.pix');
-        /*
+        
         $payload = [
             'value_cents' => floatval($value) * 100,
             'generator_name' => $name,
             'generator_document' => str_replace([".", "-"],"", $cpf),
             "expiration_time" => "1800",
         ];
-        */
-        $payload2 = [
-            'value_cents' => 10 * 100,
-            'generator_name' => "Jonathan Santos",
-            'generator_document' => "07916827573",
-            "expiration_time" => "1800",
-        ];
+        
 
         $authorization = $this->GetAuthorizationPrime();
         $productionLink = "https://api.primepag.com.br";
@@ -318,11 +311,10 @@ class DepositoController extends Controller
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $authorization,
-        ])->post($productionLink . '/v1/pix/qrcodes', $payload2);
+        ])->post($productionLink . '/v1/pix/qrcodes', $payload);
 
 
         $res = $response->json();
-        dd($res['qrcode']['content']);
         return $res;
     }
 
