@@ -137,7 +137,7 @@ class DepositoController extends Controller
             $userDate = date('Y-m-d H:i:s', strtotime($userDate . '+10 minutes'));
             
             $confirmação = Deposito::create([
-                'email' => $this->$email,
+                'email' => $this->email,
                 'valor' => $form['value'],
                 'external_reference' => $res['transactionId'],
                 'payment_link_qrcode' => $res['emvqrcps'],
@@ -170,7 +170,7 @@ class DepositoController extends Controller
             $userDate = date('Y-m-d H:i:s', strtotime($userDate . '+10 minutes'));
             
             $confirmação = Deposito::create([
-                'email' => $this->$email,
+                'email' => $this->email,
                 'valor' => $form['value'],
                 'external_reference' => $res['qrcode']['reference_code'],
                 'payment_link_qrcode' => $res['qrcode']['content'],
