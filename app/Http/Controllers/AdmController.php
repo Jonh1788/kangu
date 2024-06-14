@@ -45,6 +45,7 @@ class AdmController extends Controller
                 'deposito_minimo' => 1,
                 'saque_minimo' => 1,
                 'dificuldade_jogo' => 1,
+                'multiplicador' => 1,
             ];
 
             
