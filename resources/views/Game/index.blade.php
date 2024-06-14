@@ -107,6 +107,7 @@
                 var saldo = {{$saldo}};
                 console.log("Saldo: " + saldo);
                 var aposta = {{$aposta}};
+                var multiplicador = {{$multiplicador}};
                 instance.SendMessage('DataHandler', 'PegarSaldo', saldo.toString());
                 instance.SendMessage('DataHandler', 'PegarAposta', aposta.toString());  
                 instance.SendMessage('DataHandler', 'NotIsDemo', multiplicador.toString());  
@@ -155,7 +156,7 @@
         }
 
         function gameOver(score){
-            axios.post('/gameover', {score: score + {{$saldo}}})
+            axios.post('/game', {score: score + {{$saldo}}})
                 .then(function(response){
                     window.location.href = "/dashboard?score=" + score;
                 })
