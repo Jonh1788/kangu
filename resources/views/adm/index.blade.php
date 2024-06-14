@@ -618,7 +618,7 @@ function atualizarValor() {
         <h7 class="text-white">X</h7>
         <form action="../adm/processos?opcao=multiplicador" method="post" id="editForm3">  
         @csrf  
-            <input type="text" class="form-control custom-input" value="{{$resul['multiplicador']}}" id="multiplicador" placeholder="Digite o valor" name="valor" required>
+            <input type="text" class="form-control custom-input" value="{{$result['multiplicador']}}" id="multiplicador" placeholder="Digite o valor" name="valor" required>
             <br>
             <br>
             <button type="submit" class="btn btn-primary">Atualizar</button>
