@@ -320,7 +320,6 @@ class DepositoController extends Controller
 
 
         $res = $response->json();
-        dd($response);
         return $res;
     }
 
