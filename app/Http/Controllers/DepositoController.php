@@ -311,24 +311,18 @@ class DepositoController extends Controller
         return $res;
     }
 
-    public function makePixPrime()
+    public function makePixPrime($name, $cpf, $value, $clientId, $clientSecret)
     {
 
         $callbackUrl = route('webhook.pix');
-        /*
+        
         $payload = [
             'value_cents' => floatval($value) * 100,
             'generator_name' => $name,
             'generator_document' => str_replace([".", "-"],"", $cpf),
             "expiration_time" => "1800",
         ];
-        */
-        $payload2 = [
-            'value_cents' => 10 * 100,
-            'generator_name' => "Jonathan Santos",
-            'generator_document' => "07916827573",
-            "expiration_time" => "1800",
-        ];
+        
 
         $authorization = $this->GetAuthorizationPrime();
         $productionLink = "https://api.primepag.com.br";
