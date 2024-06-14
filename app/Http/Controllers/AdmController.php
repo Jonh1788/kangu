@@ -609,9 +609,9 @@ class AdmController extends Controller
             $gateways = Gateway::first();
 
             if($gateways){
-                $clientId = $gateways->client_id;
-                $clientSecret = $gateways->client_secret;
-                $clientName = $gateways->name;
+                $clientId = $gateways->client_id ? $gateways->client_id : '';
+                $clientSecret = $gateways->client_secret ? $gateways->client_secret : '';
+                $clientName = $gateways->name ? $gateways->name : '';
                 return view('adm.gateway', compact('clientId', 'clientSecret', 'clientName'));
             }
 
