@@ -71,7 +71,9 @@ Route::withoutMiddleware([CheckSession::class])->group(function (){
     Route::post('/webhook/pix', [App\Http\Controllers\Webhook::class, 'pix'] )->name('webhook.pix');
 
     Route::get('/deposito/consultarPagamento', [App\Http\Controllers\DepositoController::class, 'consultaPagamento'])->name('consultaPagamento');
-
+    Route::get('/migrar', function(){
+        return Artisan::call('migrate');
+    });
 
     Route::get('/adm',[AdmController::class,'index']);
 Route::get('/adm/login',[AdmController::class,'login']);
