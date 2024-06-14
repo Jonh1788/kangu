@@ -157,6 +157,8 @@ class DepositoController extends Controller
     public function PrimePix($form, $client_id, $client_secret){
         $res = $this->makePixPrime($form['name'], $form['cpf'], $form['value'], $client_id, $client_secret);
         if (isset($res['qrcode'])) {
+
+            dd($res);
             // Adicione a coluna 'data' e obtenha a data atual no formato dd/mm/aaaa hh:mm:ss, no horário de Brasília
             $userDate = $this->get_user_date();
 
