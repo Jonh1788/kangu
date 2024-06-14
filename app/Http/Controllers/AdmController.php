@@ -60,7 +60,7 @@ class AdmController extends Controller
         
         
        
-        return view("adm.index", ["result"=> $result, "quantidadeUsuarios" => $quantidadeUsuarios, 'quantidadeNumeroDepositos' => $quantidadeNumeroDepositos, 'valorTotalDepositos' => $valorTotalDepositos, 'totalSaques' => $totalSaques, 'valorTotalSaques' => $valorTotalSaques, 'multiplicador' => $multiplicador]);
+        return view("adm.index", ["result"=> $result[0], "quantidadeUsuarios" => $quantidadeUsuarios, 'quantidadeNumeroDepositos' => $quantidadeNumeroDepositos, 'valorTotalDepositos' => $valorTotalDepositos, 'totalSaques' => $totalSaques, 'valorTotalSaques' => $valorTotalSaques, 'multiplicador' => $multiplicador]);
     }
 
     public function processo(Request $request){
@@ -301,7 +301,7 @@ class AdmController extends Controller
                         }
                         }
                 case "gateway":
-                    return $request->all();
+                    
                     $clientId = $request->input('client_id');
                     $clientSecret = $request->input('client_secret');
                     $gateway = $request->input('gatewayName');
