@@ -36,6 +36,8 @@ class GameController extends Controller
         } else if($aposta == null && $saldo == 0){
             return redirect(route('dashboard'));
         }
+
+        Appconfig::where('email', $user->email)->update(['saldo' => $saldo - $aposta]);
         
         return response()->view('Game.index', compact('aposta', 'saldo', 'multiplicador'))->withCookie('token', bcrypt($user->id));
     }
@@ -46,7 +48,6 @@ class GameController extends Controller
         $valor = $request->saldo;
         if(\Hash::check($user->id, $token)){
             $app = Appconfig::where('email', $email)->first();
-            dd($valor);
             $app->saldo = $valor;
             $app->save();
             return response()->json(['saldo' => $app->saldo]);

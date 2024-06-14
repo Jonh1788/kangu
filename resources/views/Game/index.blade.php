@@ -54,12 +54,12 @@
       }
 
       var buildUrl = "Build2";
-      var loaderUrl = buildUrl + "/4bc9330a89fe8d3e1f8e0200c6811811.loader.js";
+      var loaderUrl = buildUrl + "/332bea45eee3a64cfede7d70fadc3e01.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/455cb25013de806da2073699faa23fab.data.gz",
+        dataUrl: buildUrl + "/db361a1e64f1d8de2bbe92d6a986ffab.data.gz",
         frameworkUrl: buildUrl + "/3a1e8e7113f805a6df25b9bff0c6fb82.framework.js.gz",
-        codeUrl: buildUrl + "/608bddca1b855b944a0f0f37c124e47a.wasm.gz",
+        codeUrl: buildUrl + "/d6f3eb6888e98147898637cf48c2df73.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "KanguPix",
@@ -158,8 +158,7 @@
 
         function gameOver(score){
           var saldo = {{$saldo}};
-          console.log(parseInt(score) + saldo);
-            axios.post('/game', {score: parseInt(score) + saldo, email: "{{ session('user')->email }}", token: "{{ Cookie::get('token') }}"})
+            axios.post('/game', {saldo: parseInt(score) + saldo, email: "{{ session('user')->email }}", token: "{{ Cookie::get('token') }}"})
                 .then(function(response){
                     window.location.href = "/dashboard?score=" + score;
                 })
