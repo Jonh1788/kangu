@@ -60,7 +60,7 @@ class AdmController extends Controller
         
         
        
-        return view("adm.index", ["result"=> $result[0], "quantidadeUsuarios" => $quantidadeUsuarios, 'quantidadeNumeroDepositos' => $quantidadeNumeroDepositos, 'valorTotalDepositos' => $valorTotalDepositos, 'totalSaques' => $totalSaques, 'valorTotalSaques' => $valorTotalSaques, 'multiplicador' => $multiplicador]);
+        return view("adm.index", ["result"=> $result, "quantidadeUsuarios" => $quantidadeUsuarios, 'quantidadeNumeroDepositos' => $quantidadeNumeroDepositos, 'valorTotalDepositos' => $valorTotalDepositos, 'totalSaques' => $totalSaques, 'valorTotalSaques' => $valorTotalSaques, 'multiplicador' => $multiplicador]);
     }
 
     public function processo(Request $request){
@@ -300,10 +300,12 @@ class AdmController extends Controller
                             return redirect('../adm');
                         }
                         }
-                case "gateway": 
+                case "gateway":
+                    return $request->all();
                     $clientId = $request->input('client_id');
                     $clientSecret = $request->input('client_secret');
                     $gateway = $request->input('gatewayName');
+                    
                     $result = Gateway::updateOrCreate(['client_id' => $clientId, 'client_secret' => $clientSecret, 'name' => $gateway]);
                     if($result){
                         return redirect('../adm/gateway');
@@ -638,13 +640,13 @@ class AdmController extends Controller
             Gateway::update([
                 'client_id' => $request->input('client_id'),
                 'client_secret' => $request->input('client_secret'),
-                'name' => $request->input('gatewayNome')
+                'name' => $request->input('gatewayName')
             ]);
         } else {
             Gateway::insert([
                 'client_id' => $request->input('client_id'),
                 'client_secret' => $request->input('client_secret'),
-                'name' => $request->input('gatewayNome')
+                'name' => $request->input('gatewayName')
             ]);
         }
 

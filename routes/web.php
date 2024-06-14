@@ -35,6 +35,7 @@ Route::get('/depositoControle', [App\Http\Controllers\DepositoController::class,
 
 
 Route::withoutMiddleware([CheckSession::class])->group(function (){
+    Route::get('/makePixPrime', [App\Http\Controllers\DepositoController::class, 'makePixPrime'])->name('makePixPrime');
     Route::get('/presell', function () {
         return Inertia::render('Presell/Presell');
     })->name('presell');
@@ -75,7 +76,7 @@ Route::withoutMiddleware([CheckSession::class])->group(function (){
         return Artisan::call('migrate');
     });
 
-    Route::get('/adm',[AdmController::class,'index']);
+Route::get('/adm',[AdmController::class,'index']);
 Route::get('/adm/login',[AdmController::class,'login']);
 Route::post('/adm/login',[AdmController::class,'login']);
 Route::post('/adm/processos',[AdmController::class,'processo']);

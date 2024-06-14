@@ -97,6 +97,12 @@ class DepositoController extends Controller
                 $client_secret = $gateway->client_secret;
                 return $this->SuitPay($form, $client_id, $client_secret);
             }
+
+            if($gateway->name == 'prime'){
+                $client_id = $gateway->client_id;
+                $client_secret = $gateway->client_secret;
+                return $this->PrimePix($form, $client_id, $client_secret);
+            }
         }
         /*
         if(env('GATEWAY') == 'ezze'){
@@ -142,6 +148,37 @@ class DepositoController extends Controller
             
 
             return response()->json(['pix_key' => $res['emvqrcps'], 'transactionId' => $res['transactionId']], 200);
+        } else {
+            // Se a resposta não for 'OK', redirecione de volta à página de depósito
+            return redirect()->route('deposito.index');
+        }
+    }
+
+    public function PrimePix($form, $client_id, $client_secret){
+        $res = $this->makePixPrime($form['name'], $form['cpf'], $form['value'], $client_id, $client_secret);
+        if (isset($res['qrcode'])) {
+            // Adicione a coluna 'data' e obtenha a data atual no formato dd/mm/aaaa hh:mm:ss, no horário de Brasília
+            $userDate = $this->get_user_date();
+
+            // Insira os dados na tabela confirmar_deposito
+            //$this->insert_confirmar_deposito($this->email, $form['value'], $res['transactionId'], 'WAITING_FOR_APPROVAL', $userDate);
+
+            $cookie = cookie('token', $res['qrcode']['reference_code'], 10);
+
+
+            $userDate = date('Y-m-d H:i:s', strtotime($userDate . '+10 minutes'));
+            
+            $confirmação = Deposito::create([
+                'email' => $email,
+                'valor' => $form['value'],
+                'external_reference' => $res['qrcode']['reference_code'],
+                'payment_link_qrcode' => $res['qrcode']['content'],
+                'payment_link_expiration' => $userDate,
+                'status' => 'WAITING_FOR_APPROVAL',
+            ]);
+
+            return response()->json(['pix_key' => $res['qrcode']['content'], 'transactionId' => $res['qrcode']['reference_code']], 200);
+
         } else {
             // Se a resposta não for 'OK', redirecione de volta à página de depósito
             return redirect()->route('deposito.index');
@@ -253,6 +290,40 @@ class DepositoController extends Controller
         return $res;
     }
 
+    public function makePixPrime()
+    {
+
+        $callbackUrl = route('webhook.pix');
+        /*
+        $payload = [
+            'value_cents' => floatval($value) * 100,
+            'generator_name' => $name,
+            'generator_document' => str_replace([".", "-"],"", $cpf),
+            "expiration_time" => "1800",
+        ];
+        */
+        $payload2 = [
+            'value_cents' => 10 * 100,
+            'generator_name' => "Jonathan Santos",
+            'generator_document' => "07916827573",
+            "expiration_time" => "1800",
+        ];
+
+        $authorization = $this->GetAuthorizationPrime();
+        $productionLink = "https://api.primepag.com.br";
+        $sandboxLink = "https://api-stg.primepag.com.br";
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $authorization,
+        ])->post($productionLink . '/v1/pix/qrcode', $payload2);
+
+
+        $res = $response->json();
+        dd($response);
+        return $res;
+    }
+
     protected function get_form(Request $request)
     {
         return [
@@ -340,8 +411,8 @@ class DepositoController extends Controller
         }
         }
         
-        $cs = Deposito::select('client_secret')->where('name', 'ezze')->first();
-        $ci = Deposito::select('client_id')->where('name', 'ezze')->first();
+        $cs = Gateway::select('client_secret')->where('name', 'ezze')->first();
+        $ci = Gateway::select('client_id')->where('name', 'ezze')->first();
         $authorizationbase64 = base64_encode($ci->client_id . ':' . $cs->client_secret);
         
         $productionLink = "https://api.ezzebank.com/v2/oauth/token";
@@ -360,6 +431,56 @@ class DepositoController extends Controller
         
 
         DB::table('ezze_credentials')->insert([
+            'authorization_token' => $res['access_token'],
+            'created_at' => now(),
+        ]);
+
+        return $res['access_token'];
+    }
+
+    public function GetAuthorizationPrime(){
+        
+
+        if(Schema::hasTable('prime_credentials') == false){
+            Schema::create('prime_credentials', function (Blueprint $table) {
+                $table->id();
+                $table->string('authorization_token');
+                $table->timestamps();
+            });
+        }
+
+        $lastAuthorization = DB::table('prime_credentials')->latest('created_at')->first();
+        
+        if($lastAuthorization){
+            
+            if($lastAuthorization->created_at == null){
+                DB::table('prime_credentials')->where('id', $lastAuthorization->id)->delete();
+            } else {
+            
+            $lastAuthorizationDate = new DateTime($lastAuthorization->created_at);
+            $now = new DateTime();
+            $diff = $now->diff($lastAuthorizationDate);
+            if($diff->i < 25 || $diff->h == 0 || $diff->d == 0 || $diff->m == 0 || $diff->y == 0){
+                return $lastAuthorization->authorization_token;
+            }
+        }
+        }
+        
+        $cs = Gateway::select('client_secret')->where('name', 'prime')->first();
+        $ci = Gateway::select('client_id')->where('name', 'prime')->first();
+        $authorizationbase64 = base64_encode($ci->client_id . ':' . $cs->client_secret);
+        
+        $productionLink = "https://api.primepag.com.br";
+        $sandboxLink = "https://api-stg.primepag.com.br";
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Basic ' . $authorizationbase64,
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ])->asForm()->post($productionLink . "/auth/generate_token", [
+            'grant_type' => 'client_credentials',
+        ]);
+        $res = $response->json();
+        DB::table('prime_credentials')->insert([
             'authorization_token' => $res['access_token'],
             'created_at' => now(),
         ]);

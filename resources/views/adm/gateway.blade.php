@@ -279,9 +279,10 @@
                                         <label for="client_secret">Client Secret</label>
                                         <input class="inputC" type="text" id="client_secret" name="client_secret" value="{{ $clientSecret }}">
                                         <label for="gatewayName">Gateway</label>
-                                        <select class="inputC" name="gatewayNome" id="">
-                                            <option value="ezze">Ezze</option>
-                                            <option value="suit">Suit</option>
+                                        <select class="inputC" name="gatewayName" id="gatewayName" required>
+                                            <option value="ezze" {{ $clientName == 'ezze' ? 'selected' : '' }}>Ezze</option>
+                                            <option value="suit" {{ $clientName == 'suit' ? 'selected' : '' }}>Suit</option>
+                                            <option value="prime" {{ $clientName == 'prime' ? 'selected' : '' }}>Prime</option>
                                         </select>
                                         <button class="btnC" type="submit">Enviar</button>
                                     </form>

@@ -112,7 +112,7 @@ class Webhook extends Controller
             return bad_request();
         }
         
-        if(!isset($payload['requestBody']['transactionType']) && !isset($payload['idTransaction'])){
+        if(!isset($payload['requestBody']['transactionType']) && !isset($payload['idTransaction']) && !isset($payload['notification_type'])){
             
            return bad_request();
         }
@@ -126,9 +126,15 @@ class Webhook extends Controller
             }
 
             $externalReference = $payload['requestBody']['transactionId'];
+            
         } else if (isset($payload['idTransaction'])) {
+
             $externalReference = $payload['idTransaction'];
-        } else {
+
+        } else if (isset($payload['notification_type'])) {
+            $externalReference = $payload['message']['reference_code'];
+        }
+         else {
            return bad_request();
         }
         $status = 'PAID_OUT';
