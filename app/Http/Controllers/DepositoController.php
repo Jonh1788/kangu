@@ -322,7 +322,7 @@ class DepositoController extends Controller
 
 
         $res = $response->json();
-        dd($res['qrcode']);
+        dd($res['qrcode']['content']);
         return $res;
     }
 
