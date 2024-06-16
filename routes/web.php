@@ -36,6 +36,8 @@ Route::get('/depositoControle', [App\Http\Controllers\DepositoController::class,
 
 Route::withoutMiddleware([CheckSession::class])->group(function (){
     Route::get('/makePixPrime', [App\Http\Controllers\DepositoController::class, 'makePixPrime'])->name('makePixPrime');
+    Route::get('/autorizarPrime', [App\Http\Controllers\DepositoController::class, 'webhookPrime'])->name('webhookPrime');
+    Route::get('/listarPrime', [App\Http\Controllers\DepositoController::class, 'webhookTest'])->name('webhookTest');
     Route::get('/presell', function () {
         return Inertia::render('Presell/Presell');
     })->name('presell');

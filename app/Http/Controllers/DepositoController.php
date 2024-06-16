@@ -120,6 +120,28 @@ class DepositoController extends Controller
         
     }
 
+    public function webhookTest(){
+        $callbackUrl = route('webhook.pix');
+        
+        $payload = [
+           "url" => $callbackUrl,
+        ];
+        
+
+        $authorization = $this->GetAuthorizationPrime();
+        $productionLink = "https://api.primepag.com.br";
+        $sandboxLink = "https://api-stg.primepag.com.br";
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $authorization,
+        ])->get($productionLink . '/v1/webhooks/types');
+
+
+        $res = $response->json();
+        return $res;
+    }
+
     public function webhookPrime(){
         $callbackUrl = route('webhook.pix');
         
@@ -310,7 +332,7 @@ class DepositoController extends Controller
         
         return $res;
     }
-
+ 
     public function makePixPrime($name, $cpf, $value, $clientId, $clientSecret)
     {
 
