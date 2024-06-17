@@ -15,7 +15,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard/Dashboard', ['token' => bcrypt($user->id)]);
 })->name('dashboard');
 
-Route::ge('/obrigado', function () {
+Route::get('/obrigado', function () {
     return Inertia::render('Obrigado/Obrigado');
 })->name('obrigado');
 
