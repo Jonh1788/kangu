@@ -136,9 +136,9 @@ export default function Afiliado ({auth}) {
             <Link href="/dashboard" >
                         <Home />
                     </Link>
-                    <Link href="/deposito" >
+                    <a href="/deposito" >
                         <Landmark />
-                    </Link>
+                    </a>
                     <Link href="/saque">
                         <Banknote />
                     </Link>

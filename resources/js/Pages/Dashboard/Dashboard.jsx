@@ -153,9 +153,9 @@ export default function Dashboard ({auth, token}) {
                     after:rounded-tl-[70%] after:top-5  ` + (isNearDiv ? " border-slate-950 before:shadow-[0_-10px_0_0_#020617] after:shadow-[0_-10px_0_0_#020617]" : "border-[#CD0000] before:shadow-[0_-10px_0_0_#CD0000] after:shadow-[0_-10px_0_0_#CD0000]")}>
                         <Home />
                     </Link>
-                    <Link href="/deposito" >
+                    <a href="/deposito" >
                         <Landmark />
-                    </Link>
+                    </a>
                     <Link href="/saque" >
                         <Banknote />
                     </Link>

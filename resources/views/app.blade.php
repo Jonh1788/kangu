@@ -12,10 +12,20 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        @if(route()->currentRouteName() === 'cadastrar')
-            <script>
-                alert('Cadastrar')
-            </script>
+        @if(Route::currentRouteName() === 'cadastrar')
+           <!-- MetaPixel -->
+        @endif
+
+        @if(Route::currentRouteName() === 'obrigado')
+           <!-- MetaPixel -->
+        @endif
+
+        @if(Route::currentRouteName() === 'deposito')
+           <!-- MetaPixel -->
+        @endif
+
+        @if(Route::currentRouteName() === 'deposito.pix')
+           <!-- MetaPixel -->
         @endif
         <!-- Scripts -->
         @routes

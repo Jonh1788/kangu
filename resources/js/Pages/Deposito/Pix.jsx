@@ -49,8 +49,8 @@ export default function Pix ({ auth }) {
                 console.log("confirmado")
                 setModal(true);
                 setTimeout(() => {
-                    router.visit('/dashboard');
-                }, 5000);
+                    window.location.href = "/obrigado";
+                }, 2000);
             }
     })
             .catch((error) => {

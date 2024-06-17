@@ -141,9 +141,9 @@ export default function Saque ({auth}) {
             <Link href="/dashboard" >
                         <Home />
                     </Link>
-                    <Link href="/deposito" >
+                    <a href="/deposito" >
                         <Landmark />
-                    </Link>
+                    </a>
                     <Link href="/saque" className={` ease-in-out duration-300
                     rounded-full bg-[#7C30F2]/60 backdrop-blur-sm border-[4px] p-2 -translate-y-6 
                     before:absolute before:bg-transparent before:size-4 before:-left-5 

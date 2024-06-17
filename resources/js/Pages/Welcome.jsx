@@ -10,11 +10,11 @@ export default function Welcome(){
             </div>
             <div className="w-full flex flex-col items-center justify-center text-center px-12 gap-4 text-lg">
                 
-                <Link href="/cadastrar" className="bg-[#3EB605] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative">
+                <a href="/cadastrar" className="bg-[#3EB605] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative">
                     <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
                     <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
                     Cadastro
-                </Link>
+                </a>
                 
                 <Link className="bg-[#FF8A00] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="/login">
                 <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
