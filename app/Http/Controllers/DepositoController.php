@@ -388,6 +388,19 @@ class DepositoController extends Controller
 
         return $errors;
     }
+
+    public function getPaymentStatus($externalReference){
+        
+        $productionLink = "https://api.primepag.com.br";
+        $sandboxLink = "https://api-stg.primepag.com.br";
+        $authorization = $this->GetAuthorizationPrime();
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $authorization,
+        ])->get($productionLink . '/v1/pix/qrcodes/' . $externalReference);
+        $res = $response->json();
+        return $res['qrcode']['status'];
+
+    }
     
     public function consultaPagamento(Request $request){
         
@@ -402,6 +415,25 @@ class DepositoController extends Controller
         }
    
         $externalReference = $request->query('transactionId');
+        $gatewayName = Gateway::select('name')->first();
+
+        if($gatewayName->name == 'prime'){
+            $status = $this->getPaymentStatus($externalReference);
+            
+            if($status == "paid"){
+                $webhook = route('webhook.pix');
+                $response = Http::post($webhook, [
+                    'notification_type' => 'PIX',
+                    'message' => [
+                        'reference_code' => $externalReference,
+                        'status' => 'PAID',
+                    ],
+                ]);
+                
+                return response()->json(['message' => 'Pagamento aprovado'], 200);
+            }
+            
+        }
     
         $result = Deposito::select('status')->where('external_reference', $externalReference)->first();
         
