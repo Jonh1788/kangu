@@ -76,7 +76,7 @@ export default function Dashboard ({auth, token}) {
                 <div className="bg-[#F29B30] w-max mt-4 py-2 pr-4 rounded-r-md text-white font-bold">
                     Saldo: R${auth.user.saldo},00
                 </div>
-                <button onClick={() => router.get('/deposito')} className="ml-auto mt-4 bg-slate-400 p-4 rounded-md font-bold text-white hover:bg-slate-600 shadow-md">
+                <button onClick={() => window.location.href = "/deposito"} className="ml-auto mt-4 bg-slate-400 p-4 rounded-md font-bold text-white hover:bg-slate-600 shadow-md">
                     Depositar
                 </button>
             </div>
