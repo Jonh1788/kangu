@@ -75,13 +75,19 @@ export default function Deposito({auth}) {
     };
 
     const handleChangeCPF = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+
         if(e.target.value.length == 11){
             e.target.value = e.target.value.replace(/\D/g, ''); 
+            setFormData({
+                ...formData,
+                [e.target.name]: e.target.value
+            });
+            
             if(verifyCpf(e.target.value)){
-                setFormData({
-                    ...formData,
-                    [e.target.name]: e.target.value
-                });
                 return;    
         }  else {
 
