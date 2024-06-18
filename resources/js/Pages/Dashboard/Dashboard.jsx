@@ -21,7 +21,7 @@ export default function Dashboard ({auth, token}) {
     }, [])
     const irParaJogo = (valor) => {
         if(auth.user.saldo < valor){
-            router.visit('/deposito')
+            window.location.href = '/deposito';
             return;
         }
         
@@ -76,7 +76,7 @@ export default function Dashboard ({auth, token}) {
                 <div className="bg-[#F29B30] w-max mt-4 py-2 pr-4 rounded-r-md text-white font-bold">
                     Saldo: R${auth.user.saldo},00
                 </div>
-                <button onClick={() => router.visit('/deposito')} className="ml-auto mt-4 bg-slate-400 p-4 rounded-md font-bold text-white hover:bg-slate-600 shadow-md">
+                <button onClick={() => router.get('/deposito')} className="ml-auto mt-4 bg-slate-400 p-4 rounded-md font-bold text-white hover:bg-slate-600 shadow-md">
                     Depositar
                 </button>
             </div>
@@ -103,7 +103,7 @@ export default function Dashboard ({auth, token}) {
                     <h1>Outras opções:</h1>
                     <div className="flex flex-col gap-4 px-2">
                         <p>Jogue com dinheiro real:</p>
-                        <button onClick={() => router.visit('/deposito')} className="bg-[#3EB605] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
+                        <button onClick={() => window.location.href = "/deposito"} className="bg-[#3EB605] shadowPersonalizado h-12 w-full rounded-2xl flex items-center justify-center font-bold text-white relative" href="#">
                         <div className="clip1 size-8 bg-white/30 absolute left-0 rotate-45 top-0"/>
                         <div className="clip2 size-3 bg-white/30 absolute left-1 rotate-45 top-8"/>
                         Depositar

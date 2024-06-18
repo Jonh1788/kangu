@@ -111,14 +111,14 @@ export default function Pix ({ auth }) {
                     <Link href="/dashboard" >
                         <Home />
                     </Link>
-                    <Link href="/deposito" className="
+                    <a href="/deposito" className="
                     rounded-full bg-[#7C30F2]/60 backdrop-blur-sm border-[4px] border-[#CD0000] p-2 -translate-y-6 
                     before:absolute before:bg-transparent before:size-4 before:-left-5 
                     before:rounded-tr-[70%] before:top-5 before:shadow-[0_-10px_0_0_#CD0000] 
                     after:absolute after:bg-transparent after:size-4 after:-right-5 
                     after:rounded-tl-[70%] after:top-5 after:shadow-[0_-10px_0_0_#CD0000]">
                         <Landmark />
-                    </Link>
+                    </a>
                     <Link href="/saque" >
                         <Banknote />
                     </Link>

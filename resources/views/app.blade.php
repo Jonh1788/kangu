@@ -24,7 +24,7 @@
            <!-- MetaPixel -->
         @endif
 
-        @if(Route::currentRouteName() === 'deposito.pix')
+        @if(Route::currentRouteName() === 'pix')
            <!-- MetaPixel -->
         @endif
         <!-- Scripts -->

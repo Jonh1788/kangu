@@ -25,7 +25,7 @@ Route::get('/deposito', function () {
 
 Route::get('/deposito/pix', function () {
     return Inertia::render('Deposito/Pix');
-})->name('deposito.pix');
+})->name('pix');
 
 Route::get('/saque', function () {
     return Inertia::render('Saque/Saque');
