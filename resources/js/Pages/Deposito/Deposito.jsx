@@ -75,19 +75,24 @@ export default function Deposito({auth}) {
     };
 
     const handleChangeCPF = (e) => {
-        e.target.value = e.target.value.replace(/\D/g, '');
-        if(verifyCpf(e.target.value)){
-            setFormData({
-                ...formData,
-                [e.target.name]: e.target.value
-            });
+        if(e.target.value.length == 11){
+            e.target.value = e.target.value.replace(/\D/g, ''); 
+            if(verifyCpf(e.target.value)){
+                setFormData({
+                    ...formData,
+                    [e.target.name]: e.target.value
+                });
+                return;    
+        }    } else {
+
+            setErroCpf(true);
+    
+            setTimeout(() => {
+                setErroCpf(false);
+            }, 2000);
         }
-
-        setErroCpf(true);
-
-        setTimeout(() => {
-            setErroCpf(false);
-        }, 2000);
+      
+    
     }
 
     const handleDeposito = (e) => {
@@ -169,7 +174,7 @@ export default function Deposito({auth}) {
                         />
                         <label className='text-left' htmlFor="">CPF:</label>
                         <input 
-                            type="text" 
+                            type="number" 
                             name="cpf"
                             maxLength={16}
                             placeholder="CPF" 
