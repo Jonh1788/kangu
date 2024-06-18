@@ -1,4 +1,4 @@
-import{q as f,r as a,j as e,y as l,a as s}from"./app-BSU7hxWE.js";import{F as m}from"./FooterCuracao-QxekO1WJ.js";import{c as u,H as b,L as j,B as p,U as N,a as g}from"./users-jChzIAUN.js";/**
+import{q as f,r as a,j as e,y as l,a as s}from"./app-Bg3SGEB2.js";import{F as m}from"./FooterCuracao-DCdsgYxI.js";import{c as u,H as b,L as j,B as p,U as N,a as g}from"./users-CKJARz8V.js";/**
  * @license lucide-react v0.378.0 - ISC
  *
  * This source code is licensed under the ISC license.

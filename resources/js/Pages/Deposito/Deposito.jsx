@@ -83,7 +83,7 @@ export default function Deposito({auth}) {
                     [e.target.name]: e.target.value
                 });
                 return;    
-        }    } else {
+        }  else {
 
             setErroCpf(true);
     
@@ -91,6 +91,7 @@ export default function Deposito({auth}) {
                 setErroCpf(false);
             }, 2000);
         }
+    }
       
     
     }
