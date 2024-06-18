@@ -470,7 +470,7 @@ function saveFile(blob, filename) {
                 
                 data.forEach(function (row) {
                     var rowCriado = new Date(row.created_at)
-                    var dataFormatada = rowCriado.toLocaleString('pt-BR', { timeZone: 'UTC'})
+                    var dataFormatada = rowCriado.toLocaleString('pt-BR')
                     if(row.status === status){
                         var statusClass = (row.status === 'Aprovado') ? 'text-success' : 'text-black';
                         dataTable.row.add([

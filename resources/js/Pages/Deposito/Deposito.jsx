@@ -40,6 +40,14 @@ export default function Deposito({auth}) {
         });
     };
 
+    const handleChangeCPF = (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '');
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    }
+
     const handleDeposito = (e) => {
         setLoading(true);
         e.preventDefault();
@@ -121,11 +129,11 @@ export default function Deposito({auth}) {
                         <input 
                             type="text" 
                             name="cpf"
-                            maxLength={11}
+                            maxLength={16}
                             placeholder="CPF" 
                             className="w-full placeholder:text-sm rounded-lg text-black text-sm"
                             value={formData.cpf}
-                            onChange={handleChange}
+                            onChange={handleChangeCPF}
                         />
                         <label className='text-left' htmlFor="">Valor da transação:</label>
                         <input 

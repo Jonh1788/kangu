@@ -340,8 +340,8 @@ class DepositoController extends Controller
         
         $payload = [
             'value_cents' => floatval($value) * 100,
-            'generator_name' => $name,
-            'generator_document' => str_replace([".", "-"],"", $cpf),
+            //'generator_name' => $name,
+            //'generator_document' => str_replace([".", "-"],"", $cpf),
             "expiration_time" => "1800",
         ];
         
