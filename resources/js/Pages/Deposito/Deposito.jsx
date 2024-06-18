@@ -50,7 +50,7 @@ export default function Deposito({auth}) {
             const divFooter = document.getElementById('footerC').getBoundingClientRect().top;
             const triggerDistance = 771;
             setNearDiv(divFooter < triggerDistance);
-            console.log(divFooter < triggerDistance)
+            
         }
         
         window.addEventListener('scroll', handleScroll);
@@ -82,6 +82,7 @@ export default function Deposito({auth}) {
 
         if(e.target.value.length == 11){
             e.target.value = e.target.value.replace(/\D/g, ''); 
+            console.log(e.target.value);
             setFormData({
                 ...formData,
                 [e.target.name]: e.target.value
@@ -107,7 +108,7 @@ export default function Deposito({auth}) {
         e.preventDefault();
         axios.post('/depositar', formData)
             .then((response) => {
-                router.visit(route('deposito.pix', {pix_key: response.data.pix_key, transactionId: response.data.transactionId}));
+                router.visit(route('pix', {pix_key: response.data.pix_key, transactionId: response.data.transactionId}));
                 setFormData({
                     nome: '',
                     cpf: '',
